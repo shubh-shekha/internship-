@@ -1,0 +1,2902 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "348c6620",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Collecting selenium\n",
+      "  Downloading selenium-4.7.2-py3-none-any.whl (6.3 MB)\n",
+      "Collecting trio-websocket~=0.9\n",
+      "  Downloading trio_websocket-0.9.2-py3-none-any.whl (16 kB)\n",
+      "Collecting trio~=0.17\n",
+      "  Downloading trio-0.22.0-py3-none-any.whl (384 kB)\n",
+      "Requirement already satisfied: certifi>=2021.10.8 in c:\\users\\mayank\\anaconda3\\lib\\site-packages (from selenium) (2021.10.8)\n",
+      "Requirement already satisfied: urllib3[socks]~=1.26 in c:\\users\\mayank\\anaconda3\\lib\\site-packages (from selenium) (1.26.9)\n",
+      "Requirement already satisfied: attrs>=19.2.0 in c:\\users\\mayank\\anaconda3\\lib\\site-packages (from trio~=0.17->selenium) (21.4.0)\n",
+      "Collecting outcome\n",
+      "  Downloading outcome-1.2.0-py2.py3-none-any.whl (9.7 kB)\n",
+      "Collecting exceptiongroup>=1.0.0rc9\n",
+      "  Downloading exceptiongroup-1.0.4-py3-none-any.whl (14 kB)\n",
+      "Requirement already satisfied: idna in c:\\users\\mayank\\anaconda3\\lib\\site-packages (from trio~=0.17->selenium) (3.3)\n",
+      "Requirement already satisfied: cffi>=1.14 in c:\\users\\mayank\\anaconda3\\lib\\site-packages (from trio~=0.17->selenium) (1.15.0)\n",
+      "Requirement already satisfied: sniffio in c:\\users\\mayank\\anaconda3\\lib\\site-packages (from trio~=0.17->selenium) (1.2.0)\n",
+      "Requirement already satisfied: sortedcontainers in c:\\users\\mayank\\anaconda3\\lib\\site-packages (from trio~=0.17->selenium) (2.4.0)\n",
+      "Collecting async-generator>=1.9\n",
+      "  Downloading async_generator-1.10-py3-none-any.whl (18 kB)\n",
+      "Requirement already satisfied: pycparser in c:\\users\\mayank\\anaconda3\\lib\\site-packages (from cffi>=1.14->trio~=0.17->selenium) (2.21)\n",
+      "Collecting wsproto>=0.14\n",
+      "  Downloading wsproto-1.2.0-py3-none-any.whl (24 kB)\n",
+      "Requirement already satisfied: PySocks!=1.5.7,<2.0,>=1.5.6 in c:\\users\\mayank\\anaconda3\\lib\\site-packages (from urllib3[socks]~=1.26->selenium) (1.7.1)\n",
+      "Collecting h11<1,>=0.9.0\n",
+      "  Downloading h11-0.14.0-py3-none-any.whl (58 kB)\n",
+      "Installing collected packages: outcome, h11, exceptiongroup, async-generator, wsproto, trio, trio-websocket, selenium\n",
+      "Successfully installed async-generator-1.10 exceptiongroup-1.0.4 h11-0.14.0 outcome-1.2.0 selenium-4.7.2 trio-0.22.0 trio-websocket-0.9.2 wsproto-1.2.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "!pip install selenium"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "3d0517d1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import selenium \n",
+    "import pandas as pd\n",
+    "from selenium import webdriver\n",
+    "import warnings\n",
+    "warnings.filterwarnings('ignore')\n",
+    "from selenium.common.exceptions import StaleElementReferenceException, NoSuchElementException\n",
+    "from selenium.webdriver.common.by import By\n",
+    "import time\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "da06c154",
+   "metadata": {},
+   "source": [
+    "now we will download the webdriver for the webbrowser\n",
+    "\n",
+    "check the version of your browser\n",
+    "go to the link https://chromedriver.chromium.org/downloads download the webdriver for your version of your browser"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "5f92d9c0",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "browser = webdriver.Chrome(r\"C:\\Users\\MAYANK\\Downloads\\chromedriver_win32 (1) \\chromedriver.exe\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "51675c36",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "browser.get(\"https://www.naukri.com/\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "ff31894b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "designation = browser.find_element(By.CLASS_NAME,\"suggestor-input \")\n",
+    "designation.send_keys('Data Analyst')\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7ecf3046",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "location = driver.find_element(By.XPATH,\"/html/body/div[1]/div[6]/div/div/div[5]/div/div/div/input\")\n",
+    "location.send_keys('Bangalore')\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "82e9ad20",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "search = browser.find_element(By.CLASS_NAME,'qsbSubmit')\n",
+    "search.click()\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "0e5c5510",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "job_title = []\n",
+    "job_location = []\n",
+    "company_name = []\n",
+    "experience_required = []\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "ef08f4b6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "title_tags = browser.find_elements(By.XPATH,'//a[@class=\"title fw500 ellipsis\"]')\n",
+    "for i in title_tags[0:10]:\n",
+    "    title = i.text\n",
+    "    job_title.append(title)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "d624045b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "location_tags = browser.find_elements(By.XPATH,'//li[@class=\"fleft grey-text br2 placeHolderLi location\"]')\n",
+    "for i in location_tags[0:10]:\n",
+    "    location = i.text\n",
+    "    job_location.append(location)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "87d87daa",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "company_tags = browser.find_elements(By.XPATH,'//a[@class=\"subTitle ellipsis fleft\"]')\n",
+    "for i in company_tags[0:10]:\n",
+    "    company = i.text\n",
+    "    company_name.append(company)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "dfc00072",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "experience_tags = browser.find_elements(By.XPATH,'//li[@class=\"fleft grey-text br2 placeHolderLi experience\"]')\n",
+    "for i in experience_tags[0:10]:\n",
+    "    experience = i.text\n",
+    "    experience_required.append(experience)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "ba3a900a",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "10 10 10 10\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(len(job_title),len(job_location),len(company_name),len(experience_required))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "b58090e5",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Job_title</th>\n",
+       "      <th>Job_location</th>\n",
+       "      <th>company_name</th>\n",
+       "      <th>experience_required</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Data Analyst</td>\n",
+       "      <td>New Delhi</td>\n",
+       "      <td>QCI</td>\n",
+       "      <td>0-2 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Data Analyst</td>\n",
+       "      <td>Hyderabad/Secunderabad</td>\n",
+       "      <td>The Hiring Company</td>\n",
+       "      <td>0-3 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Data Analyst</td>\n",
+       "      <td>Ahmedabad</td>\n",
+       "      <td>Samp;P Global Inc.</td>\n",
+       "      <td>0-6 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Senior Data Analyst</td>\n",
+       "      <td>New Delhi</td>\n",
+       "      <td>World Health Organization (WHO)</td>\n",
+       "      <td>1-5 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>Data Analyst</td>\n",
+       "      <td>Mumbai</td>\n",
+       "      <td>Conneqt</td>\n",
+       "      <td>0-5 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>Data Analyst</td>\n",
+       "      <td>Bangalore/Bengaluru</td>\n",
+       "      <td>Shell Pvt Ltd</td>\n",
+       "      <td>2-5 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>Data Analyst</td>\n",
+       "      <td>Bangalore/Bengaluru</td>\n",
+       "      <td>Shell Pvt Ltd</td>\n",
+       "      <td>3-5 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>Project Data Analyst</td>\n",
+       "      <td>Bangalore/Bengaluru</td>\n",
+       "      <td>WSP</td>\n",
+       "      <td>0-4 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>Data Analyst, Business Analyst</td>\n",
+       "      <td>Bangalore/Bengaluru(HSR Layout +1)</td>\n",
+       "      <td>Clinilaunch Research Institute Llp</td>\n",
+       "      <td>0-5 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>Data Analyst</td>\n",
+       "      <td>Bangalore/Bengaluru</td>\n",
+       "      <td>Shell Pvt Ltd</td>\n",
+       "      <td>2-5 Yrs</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                        Job_title                        Job_location  \\\n",
+       "0                    Data Analyst                           New Delhi   \n",
+       "1                    Data Analyst              Hyderabad/Secunderabad   \n",
+       "2                    Data Analyst                           Ahmedabad   \n",
+       "3             Senior Data Analyst                           New Delhi   \n",
+       "4                    Data Analyst                              Mumbai   \n",
+       "5                    Data Analyst                 Bangalore/Bengaluru   \n",
+       "6                    Data Analyst                 Bangalore/Bengaluru   \n",
+       "7            Project Data Analyst                 Bangalore/Bengaluru   \n",
+       "8  Data Analyst, Business Analyst  Bangalore/Bengaluru(HSR Layout +1)   \n",
+       "9                    Data Analyst                 Bangalore/Bengaluru   \n",
+       "\n",
+       "                         company_name experience_required  \n",
+       "0                                 QCI             0-2 Yrs  \n",
+       "1                  The Hiring Company             0-3 Yrs  \n",
+       "2                  Samp;P Global Inc.             0-6 Yrs  \n",
+       "3     World Health Organization (WHO)             1-5 Yrs  \n",
+       "4                             Conneqt             0-5 Yrs  \n",
+       "5                       Shell Pvt Ltd             2-5 Yrs  \n",
+       "6                       Shell Pvt Ltd             3-5 Yrs  \n",
+       "7                                 WSP             0-4 Yrs  \n",
+       "8  Clinilaunch Research Institute Llp             0-5 Yrs  \n",
+       "9                       Shell Pvt Ltd             2-5 Yrs  "
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "df = pd.DataFrame({'Job_title':job_title,'Job_location':job_location,'company_name':company_name,'experience_required':experience_required})\n",
+    "df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "d8f190ed",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[<selenium.webdriver.remote.webelement.WebElement (session=\"e261c308ca77e0dfef3f11b2d98b2b5e\", element=\"0af7e0e9-12af-4793-8372-317b9b575711\")>,\n",
+       " <selenium.webdriver.remote.webelement.WebElement (session=\"e261c308ca77e0dfef3f11b2d98b2b5e\", element=\"29b0ef0b-86d7-4ce9-a467-144d97de2248\")>,\n",
+       " <selenium.webdriver.remote.webelement.WebElement (session=\"e261c308ca77e0dfef3f11b2d98b2b5e\", element=\"4668ba00-af34-4da7-9fd3-9683a62f6b51\")>,\n",
+       " <selenium.webdriver.remote.webelement.WebElement (session=\"e261c308ca77e0dfef3f11b2d98b2b5e\", element=\"e65f4fac-4563-46fb-ae69-319ce0331824\")>]"
+      ]
+     },
+     "execution_count": 20,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "url = browser.find_elements(By.XPATH,'//a[@class=\"title fw500 ellipsis\"]')\n",
+    "url[0:4]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "id": "836d6514",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "https://www.naukri.com/job-listings-data-analyst-qci-new-delhi-0-to-2-years-091222007579\n",
+      "https://www.naukri.com/job-listings-data-analyst-the-hiring-company-hyderabad-secunderabad-0-to-3-years-091222500623\n",
+      "https://www.naukri.com/job-listings-data-analyst-samp-p-global-inc-ahmedabad-0-to-6-years-091222502092\n",
+      "https://www.naukri.com/job-listings-senior-data-analyst-world-health-organization-new-delhi-1-to-5-years-101222500432\n"
+     ]
+    }
+   ],
+   "source": [
+    "for i in url[0:4]:\n",
+    "    print(i.get_attribute('href'))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "id": "7ef99845",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "job_titles = []\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "id": "e7f22053",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "start=0\n",
+    "end=2\n",
+    "for page in range(start,end):\n",
+    "    titles= browser.find_elements(By.XPATH,'//a[@class=\"title fw500 ellipsis\"]')\n",
+    "    for i in titles:\n",
+    "        job_titles.append(i.text)\n",
+    "    next_button = browser.find_element(By.XPATH,'//a[@class=\"fright fs14 btn-secondary br2\"]')\n",
+    "    next_button.click()\n",
+    "    time.sleep(3)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "id": "5e4257be",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "39"
+      ]
+     },
+     "execution_count": 25,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "len(job_titles)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "id": "dd5b249e",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['Data Analyst',\n",
+       " 'Data Analyst',\n",
+       " 'Data Analyst',\n",
+       " 'Senior Data Analyst',\n",
+       " 'Data Analyst',\n",
+       " 'Data Analyst',\n",
+       " 'Data Analyst',\n",
+       " 'Project Data Analyst',\n",
+       " 'Data Analyst, Business Analyst',\n",
+       " 'Data Analyst',\n",
+       " 'Hiring-MIS Executive-Data Analyst-Ahmedabad',\n",
+       " 'Hiring For Data analyst @ Datamatics, Pondy',\n",
+       " 'Opening For Data analyst @ Datamatics Pondicherry (3 Months Contract)',\n",
+       " 'Job Opportunity For Data Analyst Graduates',\n",
+       " 'Data Analyst',\n",
+       " 'Senior Data Analyst II',\n",
+       " 'Data Analyst',\n",
+       " 'Senior Data Analyst',\n",
+       " 'Executive - Data Analyst',\n",
+       " 'Analyst- Web Data Management',\n",
+       " 'Senior Data Management Analyst',\n",
+       " 'Data Analyst',\n",
+       " 'Data Analyst',\n",
+       " 'Manager - Data Analyst and MIS Reporting',\n",
+       " 'Business Data Analyst',\n",
+       " 'Senior Data Analyst',\n",
+       " 'Data Analyst',\n",
+       " 'Data Analyst',\n",
+       " 'Data Analyst',\n",
+       " 'Sr Data Analyst, Data Ops I',\n",
+       " 'Data Analyst',\n",
+       " 'Data Analyst - (2-4 yrs of experience)',\n",
+       " 'Data Analyst',\n",
+       " 'Data Analyst',\n",
+       " 'Role: Product Analyst ( Product and Data analysis)',\n",
+       " 'Data Analyst',\n",
+       " 'RWE Data Analyst',\n",
+       " 'HR Data Analyst | Noida',\n",
+       " 'Data Analyst']"
+      ]
+     },
+     "execution_count": 26,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "job_titles"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c6aa6863",
+   "metadata": {},
+   "source": [
+    "# question 2"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "id": "99c08c14",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "browser = webdriver.Chrome(r\"C:\\Users\\MAYANK\\Downloads\\chromedriver_win32 (1) \\chromedriver.exe\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "id": "662ff44c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "browser.get(\"https://www.naukri.com/\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "id": "81d04880",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "designation = browser.find_element(By.CLASS_NAME,\"suggestor-input \")\n",
+    "designation.send_keys('Data Scientist')\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "id": "2ca12843",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "location = browser.find_element(By.XPATH,\"/html/body/div[1]/div[6]/div/div/div[5]/div/div/div/input\")\n",
+    "location.send_keys('Bangalore')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "id": "afb2340d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "search = browser.find_element(By.CLASS_NAME,'qsbSubmit')\n",
+    "search.click()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "id": "186142b6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "job_title = []\n",
+    "job_location = []\n",
+    "company_name = []"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "id": "26680e01",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "title_tags = browser.find_elements(By.XPATH,'//a[@class=\"title fw500 ellipsis\"]')\n",
+    "for i in title_tags[0:10]:\n",
+    "    title = i.text\n",
+    "    job_title.append(title)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "id": "21d01a4a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "location_tags = browser.find_elements(By.XPATH,'//li[@class=\"fleft grey-text br2 placeHolderLi location\"]')\n",
+    "for i in location_tags[0:10]:\n",
+    "    location = i.text\n",
+    "    job_location.append(location)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "id": "304c6715",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "company_tags = browser.find_elements(By.XPATH,'//a[@class=\"subTitle ellipsis fleft\"]')\n",
+    "for i in company_tags[0:10]:\n",
+    "    company = i.text\n",
+    "    company_name.append(company)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "id": "a321d1e6",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "10 10 10\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(len(job_title),len(job_location),len(company_name))\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "id": "baa8d9ad",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Job_title</th>\n",
+       "      <th>Job_location</th>\n",
+       "      <th>company_name</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Analystics &amp; Modeling Specialist</td>\n",
+       "      <td>Bangalore/Bengaluru, Kolkata, Mumbai, Hyderaba...</td>\n",
+       "      <td>Accenture</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Data Scientist</td>\n",
+       "      <td>Bangalore/Bengaluru, New Delhi, Hyderabad/Secu...</td>\n",
+       "      <td>Tata Nexarc</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Data Scientist</td>\n",
+       "      <td>Bangalore/Bengaluru, Nagpur, Pune</td>\n",
+       "      <td>Tech Mahindra</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Data &amp; Analytics Lead, Geo Analytics - GAMMA</td>\n",
+       "      <td>Bangalore/Bengaluru</td>\n",
+       "      <td>Boston Consulting Group</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>Weather and Climate Data Scientist</td>\n",
+       "      <td>Bangalore/Bengaluru</td>\n",
+       "      <td>Shell Pvt Ltd</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>Data Scientist</td>\n",
+       "      <td>Hybrid - Bangalore/Bengaluru, Noida, Kolkata, ...</td>\n",
+       "      <td>Mindtree</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>Data Scientist - II</td>\n",
+       "      <td>Bangalore/Bengaluru, India, Mumbai (All Areas)</td>\n",
+       "      <td>Bizongo</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>Senior Data Scientist</td>\n",
+       "      <td>Bangalore/Bengaluru, Mumbai</td>\n",
+       "      <td>Baker Hughes</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>Manager-Data Science</td>\n",
+       "      <td>Bangalore/Bengaluru</td>\n",
+       "      <td>AMERICAN EXPRESS</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>ACN - Applied Intelligence - Data Scientist - 09</td>\n",
+       "      <td>Bangalore/Bengaluru</td>\n",
+       "      <td>Accenture</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                                          Job_title  \\\n",
+       "0                  Analystics & Modeling Specialist   \n",
+       "1                                    Data Scientist   \n",
+       "2                                    Data Scientist   \n",
+       "3      Data & Analytics Lead, Geo Analytics - GAMMA   \n",
+       "4                Weather and Climate Data Scientist   \n",
+       "5                                    Data Scientist   \n",
+       "6                               Data Scientist - II   \n",
+       "7                             Senior Data Scientist   \n",
+       "8                              Manager-Data Science   \n",
+       "9  ACN - Applied Intelligence - Data Scientist - 09   \n",
+       "\n",
+       "                                        Job_location             company_name  \n",
+       "0  Bangalore/Bengaluru, Kolkata, Mumbai, Hyderaba...                Accenture  \n",
+       "1  Bangalore/Bengaluru, New Delhi, Hyderabad/Secu...              Tata Nexarc  \n",
+       "2                  Bangalore/Bengaluru, Nagpur, Pune            Tech Mahindra  \n",
+       "3                                Bangalore/Bengaluru  Boston Consulting Group  \n",
+       "4                                Bangalore/Bengaluru            Shell Pvt Ltd  \n",
+       "5  Hybrid - Bangalore/Bengaluru, Noida, Kolkata, ...                 Mindtree  \n",
+       "6     Bangalore/Bengaluru, India, Mumbai (All Areas)                  Bizongo  \n",
+       "7                        Bangalore/Bengaluru, Mumbai             Baker Hughes  \n",
+       "8                                Bangalore/Bengaluru         AMERICAN EXPRESS  \n",
+       "9                                Bangalore/Bengaluru                Accenture  "
+      ]
+     },
+     "execution_count": 37,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "df1 = pd.DataFrame({'Job_title':job_title,'Job_location':job_location,'company_name':company_name})\n",
+    "df1\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9f5b48e8",
+   "metadata": {},
+   "source": [
+    "# question 3"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "id": "a755f161",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import selenium \n",
+    "import pandas as pd\n",
+    "from selenium import webdriver\n",
+    "import warnings\n",
+    "warnings.filterwarnings('ignore')\n",
+    "from selenium.common.exceptions import StaleElementReferenceException, NoSuchElementException\n",
+    "from selenium.webdriver.common.by import By\n",
+    "import time\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "id": "773c6bee",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "driver = webdriver.Chrome(r\"C:\\Users\\MAYANK\\Downloads\\chromedriver_win32 (1) \\chromedriver.exe\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "id": "a5c8dfd5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "driver.get(\"https://www.naukri.com/\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "id": "5d820825",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "designation = driver.find_element(By.CLASS_NAME,\"suggestor-input \")\n",
+    "designation.send_keys('Data Scientist')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "id": "098e5178",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "search = driver.find_element(By.CLASS_NAME,'qsbSubmit')\n",
+    "search.click()\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 45,
+   "id": "b06e50b6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "loc_filter=driver.find_elements(By.XPATH,'//div[@class=\"mt-8 chckBoxCont\"]')\n",
+    "\n",
+    "\n",
+    "for i in loc_filter :\n",
+    "    if (i.text=='Delhi / NCR'):\n",
+    "        i.click()\n",
+    "        break"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "id": "f8d54d19",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "sal_filter=driver.find_elements(By.XPATH,'//div[@class=\"mt-8 chckBoxCont\"]')\n",
+    "for i in sal_filter:\n",
+    "    if(i.text=='3-6 Lakhs'):\n",
+    "        i.click()\n",
+    "        break\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "id": "54597584",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "job_title = []\n",
+    "job_location = []\n",
+    "company_name = []\n",
+    "experience_required = []"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 48,
+   "id": "61f3424e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "title_tags = driver.find_elements(By.XPATH,'//a[@class=\"title fw500 ellipsis\"]')\n",
+    "for i in title_tags[0:10]:\n",
+    "    title = i.text\n",
+    "    job_title.append(title)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "id": "9b2da7f8",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "location_tags = driver.find_elements(By.XPATH,'//li[@class=\"fleft grey-text br2 placeHolderLi location\"]')\n",
+    "for i in location_tags[0:10]:\n",
+    "    location = i.text\n",
+    "    job_location.append(location)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "id": "12be0fc6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "company_tags = driver.find_elements(By.XPATH,'//a[@class=\"subTitle ellipsis fleft\"]')\n",
+    "for i in company_tags[0:10]:\n",
+    "    company = i.text\n",
+    "    company_name.append(company)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 51,
+   "id": "4fb5c956",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "experience_tags = driver.find_elements(By.XPATH,'//span[@class=\"ellipsis fleft fs12 lh16 expwdth\"]')\n",
+    "for i in experience_tags[0:10]:\n",
+    "    experience = i.text\n",
+    "    experience_required.append(experience)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 52,
+   "id": "3e61c7f5",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "10 10 10 10\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(len(job_title),len(job_location),len(company_name),len(experience_required))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 53,
+   "id": "740aff4a",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Job_title</th>\n",
+       "      <th>Job_location</th>\n",
+       "      <th>company_name</th>\n",
+       "      <th>experience_required</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Analystics &amp; Modeling Specialist</td>\n",
+       "      <td>Kolkata, Mumbai, Hyderabad/Secunderabad, Pune,...</td>\n",
+       "      <td>Accenture</td>\n",
+       "      <td>6-8 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Data Scientist</td>\n",
+       "      <td>New Delhi, Hyderabad/Secunderabad, Pune, Ahmed...</td>\n",
+       "      <td>Tata Nexarc</td>\n",
+       "      <td>4-8 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Data Scientist</td>\n",
+       "      <td>Nagpur, Pune, Bangalore/Bengaluru</td>\n",
+       "      <td>Tech Mahindra</td>\n",
+       "      <td>5-8 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Data &amp; Analytics Lead, Geo Analytics - GAMMA</td>\n",
+       "      <td>Bangalore/Bengaluru</td>\n",
+       "      <td>Boston Consulting Group</td>\n",
+       "      <td>7-10 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>Weather and Climate Data Scientist</td>\n",
+       "      <td>Bangalore/Bengaluru</td>\n",
+       "      <td>Shell Pvt Ltd</td>\n",
+       "      <td>5-12 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>Data Scientist</td>\n",
+       "      <td>Hybrid - Noida, Kolkata, Hyderabad/Secunderaba...</td>\n",
+       "      <td>Mindtree</td>\n",
+       "      <td>5-10 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>Data Scientist - II</td>\n",
+       "      <td>India, Bangalore/Bengaluru, Mumbai (All Areas)</td>\n",
+       "      <td>Bizongo</td>\n",
+       "      <td>3-6 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>Senior Data Scientist</td>\n",
+       "      <td>Mumbai, Bangalore/Bengaluru</td>\n",
+       "      <td>Baker Hughes</td>\n",
+       "      <td>6-8 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>Manager-Data Science</td>\n",
+       "      <td>Bangalore/Bengaluru</td>\n",
+       "      <td>AMERICAN EXPRESS</td>\n",
+       "      <td>3-4 Yrs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>ACN - Applied Intelligence - Data Scientist - 09</td>\n",
+       "      <td>Bangalore/Bengaluru</td>\n",
+       "      <td>Accenture</td>\n",
+       "      <td>2-6 Yrs</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                                          Job_title  \\\n",
+       "0                  Analystics & Modeling Specialist   \n",
+       "1                                    Data Scientist   \n",
+       "2                                    Data Scientist   \n",
+       "3      Data & Analytics Lead, Geo Analytics - GAMMA   \n",
+       "4                Weather and Climate Data Scientist   \n",
+       "5                                    Data Scientist   \n",
+       "6                               Data Scientist - II   \n",
+       "7                             Senior Data Scientist   \n",
+       "8                              Manager-Data Science   \n",
+       "9  ACN - Applied Intelligence - Data Scientist - 09   \n",
+       "\n",
+       "                                        Job_location             company_name  \\\n",
+       "0  Kolkata, Mumbai, Hyderabad/Secunderabad, Pune,...                Accenture   \n",
+       "1  New Delhi, Hyderabad/Secunderabad, Pune, Ahmed...              Tata Nexarc   \n",
+       "2                  Nagpur, Pune, Bangalore/Bengaluru            Tech Mahindra   \n",
+       "3                                Bangalore/Bengaluru  Boston Consulting Group   \n",
+       "4                                Bangalore/Bengaluru            Shell Pvt Ltd   \n",
+       "5  Hybrid - Noida, Kolkata, Hyderabad/Secunderaba...                 Mindtree   \n",
+       "6     India, Bangalore/Bengaluru, Mumbai (All Areas)                  Bizongo   \n",
+       "7                        Mumbai, Bangalore/Bengaluru             Baker Hughes   \n",
+       "8                                Bangalore/Bengaluru         AMERICAN EXPRESS   \n",
+       "9                                Bangalore/Bengaluru                Accenture   \n",
+       "\n",
+       "  experience_required  \n",
+       "0             6-8 Yrs  \n",
+       "1             4-8 Yrs  \n",
+       "2             5-8 Yrs  \n",
+       "3            7-10 Yrs  \n",
+       "4            5-12 Yrs  \n",
+       "5            5-10 Yrs  \n",
+       "6             3-6 Yrs  \n",
+       "7             6-8 Yrs  \n",
+       "8             3-4 Yrs  \n",
+       "9             2-6 Yrs  "
+      ]
+     },
+     "execution_count": 53,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "df2 = pd.DataFrame({'Job_title':job_title,'Job_location':job_location,'company_name':company_name,'experience_required':experience_required})\n",
+    "df2"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5a4b8166",
+   "metadata": {},
+   "source": [
+    "# question 4"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 65,
+   "id": "259f59ef",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "driver = webdriver.Chrome(r\"C:\\Users\\MAYANK\\Downloads\\chromedriver_win32 (1) \\chromedriver.exe\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 66,
+   "id": "37e60054",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "driver.get(\" https://www.flipkart.com/\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 69,
+   "id": "31e25418",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "search_product = driver.find_element(By.XPATH,'//input[@class=\"_3704LK\"]')\n",
+    "search_product.send_keys(\"sunglasses\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 70,
+   "id": "550e82da",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<bound method WebElement.click of <selenium.webdriver.remote.webelement.WebElement (session=\"3154d62e1378663d9ce6aea2e8e7aa39\", element=\"0ce4735f-ce20-4893-ba66-49c126d406a7\")>>"
+      ]
+     },
+     "execution_count": 70,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "search_btn = driver.find_element(By.XPATH,'//button[@class=\"L0Z3Pu\"]')\n",
+    "search_btn.click\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 71,
+   "id": "3cfd3b40",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "brand_tit = []\n",
+    "product_tit = []\n",
+    "price_tit = []\n",
+    "discount_tit = []\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 77,
+   "id": "5b59326b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "brand_title = driver.find_elements(By.XPATH,'//div[@class=\"_2WkVRV\"]')\n",
+    "for i in brand_title[0:100]:\n",
+    "    brand= i.text\n",
+    "    brand_tit.append(brand)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 86,
+   "id": "85c2d18c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "product_title = driver.find_elements(By.XPATH,'//a[@class=\"IRpwTa\"]')\n",
+    "for i in product_title[0:100]:\n",
+    "    product = i.text\n",
+    "    product_tit.append(product)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 97,
+   "id": "1b2836c1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "price_title = driver.find_elements(By.XPATH,'//div[@class=\"_30jeq3\"]')\n",
+    "for i in price_title[0:100]:\n",
+    "    price = i.text\n",
+    "    price_tit.append(price)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 80,
+   "id": "8a617e4b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "discount_title =  driver.find_elements(By.XPATH,'//div[@class=\"_3Ay6Sb\"]')\n",
+    "for i in discount_title[0:100]:\n",
+    "    discount = i.text\n",
+    "    discount_tit.append(discount)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 81,
+   "id": "4ef68233",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['CRYSTAL CART',\n",
+       " 'Silver Kartz',\n",
+       " 'LIZA ANGEL',\n",
+       " 'Elligator',\n",
+       " 'Fastrack',\n",
+       " 'Fastrack',\n",
+       " 'PHENOMENAL',\n",
+       " 'CRYSTAL CART',\n",
+       " 'Fastrack',\n",
+       " 'SHAAH COLLECTIONS',\n",
+       " 'ROZZETTA CRAFT',\n",
+       " 'CRYSTAL CART',\n",
+       " 'Elligator',\n",
+       " 'Fastrack',\n",
+       " 'Fastrack',\n",
+       " 'LIZA ANGEL',\n",
+       " 'VINCENT CHASE',\n",
+       " 'ROYAL SON',\n",
+       " 'SRPM',\n",
+       " 'Elligator',\n",
+       " 'CRYSTAL CART',\n",
+       " 'ALIXERO',\n",
+       " 'New Specs',\n",
+       " 'Fastrack',\n",
+       " 'SRPM',\n",
+       " 'Fastrack',\n",
+       " 'hayden haiza',\n",
+       " 'CRYSTAL CART',\n",
+       " 'Fastrack',\n",
+       " 'Fastrack',\n",
+       " 'Silver Kartz',\n",
+       " 'VINCENT CHASE',\n",
+       " 'PIRASO',\n",
+       " 'LIZA ANGEL',\n",
+       " 'SUNBEE',\n",
+       " 'Elligator',\n",
+       " 'VINCENT CHASE',\n",
+       " 'CRYSTAL CART',\n",
+       " 'LIZA ANGEL',\n",
+       " 'SUNBEE']"
+      ]
+     },
+     "execution_count": 81,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "brand_tit"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 87,
+   "id": "c0c77329",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['UV Protection, Gradient Round Sunglasses (Free Size)',\n",
+       " 'UV Protection Clubmaster Sunglasses (53)',\n",
+       " 'Riding Glasses, Night Vision Spectacle Sunglasses (Fre...',\n",
+       " 'UV Protection Cat-eye, Retro Square, Oval, Round Sungla...',\n",
+       " 'UV Protection Rectangular Sunglasses (Free Size)',\n",
+       " 'UV Protection Wayfarer Sunglasses (Free Size)',\n",
+       " 'UV Protection Retro Square Sunglasses (53)',\n",
+       " 'Polarized, UV Protection, Gradient, Riding Glasses Rect...',\n",
+       " 'UV Protection Wayfarer Sunglasses (Free Size)',\n",
+       " 'UV Protection, Polarized, Mirrored Rectangular Sunglass...',\n",
+       " 'UV Protection, Gradient Rectangular Sunglasses (Free Si...',\n",
+       " 'Polarized, UV Protection, Mirrored, Gradient Rectangula...',\n",
+       " 'UV Protection Cat-eye, Retro Square, Oval, Round Sungla...',\n",
+       " 'Gradient, UV Protection Wayfarer Sunglasses (Free Size)',\n",
+       " 'Mirrored, UV Protection Wayfarer Sunglasses (Free Size)',\n",
+       " 'UV Protection, Polarized Rectangular Sunglasses (Free S...',\n",
+       " 'by Lenskart Polarized, UV Protection Rectangular Sungla...',\n",
+       " 'UV Protection, Polarized Round Sunglasses (54)',\n",
+       " 'UV Protection Wayfarer Sunglasses (50)',\n",
+       " 'UV Protection Round Sunglasses (54)',\n",
+       " 'Mirrored, Night Vision Oval Sunglasses (Free Size)',\n",
+       " 'UV Protection, Riding Glasses Cat-eye Sunglasses (55)',\n",
+       " 'UV Protection Rectangular Sunglasses (Free Size)',\n",
+       " 'Gradient, UV Protection Wayfarer Sunglasses (Free Size)',\n",
+       " 'Night Vision, UV Protection Round Sunglasses (54)',\n",
+       " 'UV Protection Shield Sunglasses (Free Size)',\n",
+       " 'Polarized, UV Protection Aviator Sunglasses (55)',\n",
+       " 'Gradient, UV Protection, Riding Glasses Retro Square, O...',\n",
+       " 'Polarized Retro Square Sunglasses (Free Size)',\n",
+       " 'UV Protection Wayfarer Sunglasses (Free Size)',\n",
+       " 'UV Protection Wayfarer Sunglasses (Free Size)',\n",
+       " 'by Lenskart Polarized, UV Protection Rectangular Sungla...',\n",
+       " 'UV Protection Aviator Sunglasses (54)',\n",
+       " 'Riding Glasses, UV Protection, Night Vision Spectacle ...',\n",
+       " 'UV Protection, Polarized Wayfarer Sunglasses (Free Size...',\n",
+       " 'Others Cat-eye, Retro Square, Wayfarer Sunglasses (54)',\n",
+       " 'by Lenskart Polarized, UV Protection Cat-eye Sunglasses...',\n",
+       " 'Polarized, UV Protection, Gradient, Riding Glasses Oval...',\n",
+       " 'Polarized, UV Protection Retro Square, Over-sized, Rect...',\n",
+       " 'UV Protection Cat-eye Sunglasses (Free Size)']"
+      ]
+     },
+     "execution_count": 87,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "product_tit\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 98,
+   "id": "8cfa8855",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['₹399',\n",
+       " '₹278',\n",
+       " '₹129',\n",
+       " '₹149',\n",
+       " '₹559',\n",
+       " '₹566',\n",
+       " '₹129',\n",
+       " '₹314',\n",
+       " '₹649',\n",
+       " '₹159',\n",
+       " '₹398',\n",
+       " '₹459',\n",
+       " '₹129',\n",
+       " '₹719',\n",
+       " '₹809',\n",
+       " '₹129',\n",
+       " '₹849',\n",
+       " '₹699',\n",
+       " '₹149',\n",
+       " '₹286',\n",
+       " '₹192',\n",
+       " '₹199',\n",
+       " '₹259',\n",
+       " '₹679',\n",
+       " '₹179',\n",
+       " '₹719',\n",
+       " '₹413',\n",
+       " '₹269',\n",
+       " '₹639',\n",
+       " '₹639',\n",
+       " '₹284',\n",
+       " '₹719',\n",
+       " '₹257',\n",
+       " '₹129',\n",
+       " '₹283',\n",
+       " '₹149',\n",
+       " '₹949',\n",
+       " '₹302',\n",
+       " '₹129',\n",
+       " '₹149']"
+      ]
+     },
+     "execution_count": 98,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "price_tit\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 95,
+   "id": "75b6cc72",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['80% off',\n",
+       " '81% off',\n",
+       " '87% off',\n",
+       " '75% off',\n",
+       " '30% off',\n",
+       " '37% off',\n",
+       " '87% off',\n",
+       " '79% off',\n",
+       " '35% off',\n",
+       " '90% off',\n",
+       " '80% off',\n",
+       " '78% off',\n",
+       " '87% off',\n",
+       " '20% off',\n",
+       " '19% off',\n",
+       " '87% off',\n",
+       " '57% off',\n",
+       " '65% off',\n",
+       " '88% off',\n",
+       " '88% off',\n",
+       " '67% off',\n",
+       " '71% off',\n",
+       " '90% off',\n",
+       " '15% off',\n",
+       " '82% off',\n",
+       " '20% off',\n",
+       " '83% off',\n",
+       " '82% off',\n",
+       " '20% off',\n",
+       " '20% off',\n",
+       " '81% off',\n",
+       " '64% off',\n",
+       " '83% off',\n",
+       " '74% off',\n",
+       " '78% off',\n",
+       " '87% off',\n",
+       " '62% off',\n",
+       " '79% off',\n",
+       " '56% off',\n",
+       " '85% off']"
+      ]
+     },
+     "execution_count": 95,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "discount_tit"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d3b9f6c5",
+   "metadata": {},
+   "source": [
+    "# question 5"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 96,
+   "id": "92090393",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "ratings = []\n",
+    "reviews = []\n",
+    "review_summary = []\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 102,
+   "id": "d9ac8978",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "ratings_title = driver.find_elements(By.XPATH,'//div[@class=\"_3LWZlK\"]')\n",
+    "for i in ratings_title[0:10]:\n",
+    "    title = i.text\n",
+    "    ratings.append(title)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3e30f02a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "reviews_titles = driver.find_elements(By.XPATH,'//p[@class=\"_2-N8zT\"]')\n",
+    "for i in reviews_titles[0:10]:\n",
+    "    reviews_titles =i.text\n",
+    "    reviews_titles.append(review)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 107,
+   "id": "5aa5c023",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "summary_title = driver.find_elements(By.XPATH,'//p[@class=\"_2-N8zT\"]')\n",
+    "for i in summary_title[0:10]:\n",
+    "    title = i.text\n",
+    "    review_summary.append(title)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 113,
+   "id": "6f94daf0",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "5 10 20\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(len(ratings),len(reviews),len(review_summary))\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c1c14782",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df5 = pd.DataFrame({'reviews_titles':reviews,'review_summary':review_summary})\n",
+    "df5\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "88f25ede",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df6 = [{'ratings':ratings}]\n",
+    "df6\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f986cd17",
+   "metadata": {},
+   "source": [
+    "# question 6"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 117,
+   "id": "d055d042",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import selenium \n",
+    "import pandas as pd\n",
+    "from selenium import webdriver\n",
+    "import warnings\n",
+    "warnings.filterwarnings('ignore')\n",
+    "from selenium.common.exceptions import StaleElementReferenceException, NoSuchElementException\n",
+    "from selenium.webdriver.common.by import By\n",
+    "import time"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 118,
+   "id": "964b563a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "driver = webdriver.Chrome(r\"C:\\Users\\MAYANK\\Downloads\\chromedriver_win32 (1) \\chromedriver.exe\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 119,
+   "id": "b0aef90d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "driver.get(\"https://www.flipkart.com/\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 120,
+   "id": "291300c6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "search_product = driver.find_element(By.XPATH,'//input[@class=\"_3704LK\"]')\n",
+    "search_product.send_keys(\"sneakers\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 121,
+   "id": "92742a3a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "search_btn = driver.find_element(By.XPATH,'//button[@class=\"L0Z3Pu\"]')\n",
+    "search_btn.click()\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 122,
+   "id": "d98a0546",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "brand_name = []\n",
+    "product_description = []\n",
+    "price_val = []\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 144,
+   "id": "4fbbaf24",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "brand_title =  driver.find_elements(By.XPATH,'//div[@class=\"_2WkVRV\"]')\n",
+    "for i in brand_title[0:200]:\n",
+    "    brand= i.text\n",
+    "    brand_name.append(brand)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 146,
+   "id": "2a54c89e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "product_title= driver.find_elements(By.XPATH,'//a[@class=\"IRpwTa\"]')\n",
+    "for i in product_title[0:200]:\n",
+    "    product = i.text\n",
+    "    product_description.append(i.text)\n",
+    "    \n",
+    "    \n",
+    "    \n",
+    "    "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 147,
+   "id": "6920ef10",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "price_tag = driver.find_elements(By.XPATH,'//div[@class=\"_30jeq3\"]')\n",
+    "for i in price_tag[0:200]:\n",
+    "    price = i.text\n",
+    "    price_val.append(price)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 148,
+   "id": "7e475ec6",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "80 43 80\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(len(brand_name),len(product_description),len(price_val))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 130,
+   "id": "d1c40e24",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 150,
+   "id": "32c2d3eb",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>brand_name</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>BOLLERO</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>SFR</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Labbin</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Shozie</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>aadi</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>75</th>\n",
+       "      <td>BRUTON</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>76</th>\n",
+       "      <td>BRUTON</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>77</th>\n",
+       "      <td>PUMA</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>78</th>\n",
+       "      <td>Robbie jones</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>79</th>\n",
+       "      <td>Robbie jones</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>80 rows × 1 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "      brand_name\n",
+       "0        BOLLERO\n",
+       "1            SFR\n",
+       "2         Labbin\n",
+       "3         Shozie\n",
+       "4           aadi\n",
+       "..           ...\n",
+       "75        BRUTON\n",
+       "76        BRUTON\n",
+       "77          PUMA\n",
+       "78  Robbie jones\n",
+       "79  Robbie jones\n",
+       "\n",
+       "[80 rows x 1 columns]"
+      ]
+     },
+     "execution_count": 150,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df6 = pd.DataFrame({\"brand_name\":brand_name})\n",
+    "df6\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 151,
+   "id": "83107c79",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>product_description</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Trendy Sporty Shoes For Mens Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Trendy Sporty Shoes For Mens Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Ultralightweight | Comfortable | Breathable Wa...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Trendy Sporty Shoes For Mens Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>Ultralightweight | Comfortable | Breathable Wa...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>Mesh | Ultralightweight | Comfortable | Breath...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>PLANCK Smart Grey Lace-Ups Casuals Sneakers Sn...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <td>FAST Trenddy Tainer Lace-ups Sporty Casuals Sn...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <td>Stylish &amp; Trendy Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>12</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>13</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>14</th>\n",
+       "      <td>MADRYN 2.O Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>15</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>16</th>\n",
+       "      <td>Lightweight Pack Of 1 Trendy Sneakers Sneakers...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>17</th>\n",
+       "      <td>Lattest Sneakers Shoe Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>18</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>19</th>\n",
+       "      <td>PLANCK Smart Red Lace-Ups Casuals Sneakers Sne...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>20</th>\n",
+       "      <td>Stylish &amp; Trendy Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>21</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>22</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>23</th>\n",
+       "      <td>Sneakers For Women</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>24</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>25</th>\n",
+       "      <td>Exclusive dancing sneaker For Boys||Funky danc...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>26</th>\n",
+       "      <td>PLANCK Smart Blue Lace-Ups Casuals Sneakers Sn...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>27</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>28</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>29</th>\n",
+       "      <td>Exclusive Sneaker Shoes Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>30</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>31</th>\n",
+       "      <td>Exclusive Affordable Collection of Trendy &amp; St...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>32</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>33</th>\n",
+       "      <td>BRENTT 2.0 Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>34</th>\n",
+       "      <td>Sneakers Dancing Shoes/Street Dancing Shoe For...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>35</th>\n",
+       "      <td>FAST Trenddy Tainer Lace-ups Sporty Casuals Sn...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>36</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>37</th>\n",
+       "      <td>Sneakers Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>38</th>\n",
+       "      <td>Modern Trendy Shoes Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>39</th>\n",
+       "      <td>Modern Trendy Shoes Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>40</th>\n",
+       "      <td>Skye Clean Distressed Sneakers For Women</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>41</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>42</th>\n",
+       "      <td>Sneakers For Men</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                                  product_description\n",
+       "0       Trendy Sporty Shoes For Mens Sneakers For Men\n",
+       "1       Trendy Sporty Shoes For Mens Sneakers For Men\n",
+       "2   Ultralightweight | Comfortable | Breathable Wa...\n",
+       "3       Trendy Sporty Shoes For Mens Sneakers For Men\n",
+       "4   Ultralightweight | Comfortable | Breathable Wa...\n",
+       "5                                    Sneakers For Men\n",
+       "6                                    Sneakers For Men\n",
+       "7                                    Sneakers For Men\n",
+       "8   Mesh | Ultralightweight | Comfortable | Breath...\n",
+       "9   PLANCK Smart Grey Lace-Ups Casuals Sneakers Sn...\n",
+       "10  FAST Trenddy Tainer Lace-ups Sporty Casuals Sn...\n",
+       "11                  Stylish & Trendy Sneakers For Men\n",
+       "12                                   Sneakers For Men\n",
+       "13                                   Sneakers For Men\n",
+       "14                        MADRYN 2.O Sneakers For Men\n",
+       "15                                   Sneakers For Men\n",
+       "16  Lightweight Pack Of 1 Trendy Sneakers Sneakers...\n",
+       "17             Lattest Sneakers Shoe Sneakers For Men\n",
+       "18                                   Sneakers For Men\n",
+       "19  PLANCK Smart Red Lace-Ups Casuals Sneakers Sne...\n",
+       "20                  Stylish & Trendy Sneakers For Men\n",
+       "21                                   Sneakers For Men\n",
+       "22                                   Sneakers For Men\n",
+       "23                                 Sneakers For Women\n",
+       "24                                   Sneakers For Men\n",
+       "25  Exclusive dancing sneaker For Boys||Funky danc...\n",
+       "26  PLANCK Smart Blue Lace-Ups Casuals Sneakers Sn...\n",
+       "27                                   Sneakers For Men\n",
+       "28                                   Sneakers For Men\n",
+       "29           Exclusive Sneaker Shoes Sneakers For Men\n",
+       "30                                   Sneakers For Men\n",
+       "31  Exclusive Affordable Collection of Trendy & St...\n",
+       "32                                   Sneakers For Men\n",
+       "33                        BRENTT 2.0 Sneakers For Men\n",
+       "34  Sneakers Dancing Shoes/Street Dancing Shoe For...\n",
+       "35  FAST Trenddy Tainer Lace-ups Sporty Casuals Sn...\n",
+       "36                                   Sneakers For Men\n",
+       "37                          Sneakers Sneakers For Men\n",
+       "38               Modern Trendy Shoes Sneakers For Men\n",
+       "39               Modern Trendy Shoes Sneakers For Men\n",
+       "40           Skye Clean Distressed Sneakers For Women\n",
+       "41                                   Sneakers For Men\n",
+       "42                                   Sneakers For Men"
+      ]
+     },
+     "execution_count": 151,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df7 = pd.DataFrame({\"product_description\":product_description})\n",
+    "df7"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 152,
+   "id": "fc26dd13",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>price_val</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>₹699</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>₹599</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>₹399</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>₹295</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>₹359</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>75</th>\n",
+       "      <td>₹299</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>76</th>\n",
+       "      <td>₹389</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>77</th>\n",
+       "      <td>₹2,119</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>78</th>\n",
+       "      <td>₹439</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>79</th>\n",
+       "      <td>₹439</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>80 rows × 1 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   price_val\n",
+       "0       ₹699\n",
+       "1       ₹599\n",
+       "2       ₹399\n",
+       "3       ₹295\n",
+       "4       ₹359\n",
+       "..       ...\n",
+       "75      ₹299\n",
+       "76      ₹389\n",
+       "77    ₹2,119\n",
+       "78      ₹439\n",
+       "79      ₹439\n",
+       "\n",
+       "[80 rows x 1 columns]"
+      ]
+     },
+     "execution_count": 152,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df8 = pd.DataFrame({\"price_val\":price_val})\n",
+    "df8"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "41736590",
+   "metadata": {},
+   "source": [
+    "# question 7"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 154,
+   "id": "f6e9e373",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "driver = webdriver.Chrome(r\"C:\\Users\\MAYANK\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 155,
+   "id": "d3aec36e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "driver.get(\"https://www.amazon.in/\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 159,
+   "id": "72b5b254",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "designation = driver.find_element(By.XPATH,'//input[@class=\"nav-input nav-progressive-attribute\"]')\n",
+    "designation.send_keys('Laptop')\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 157,
+   "id": "9348aff6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "search = driver.find_element(By.XPATH,'//input[@class=\"nav-input nav-progressive-attribute\"]')\n",
+    "search.click()\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 160,
+   "id": "d34364a2",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<bound method WebElement.click of <selenium.webdriver.remote.webelement.WebElement (session=\"9f43699f795c4ffbb4433a90ea3d8c12\", element=\"287d8906-45ae-4069-9670-66c3bb79b07b\")>>"
+      ]
+     },
+     "execution_count": 160,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "filter1 = driver.find_element(By.XPATH,'/html/body/div[1]/div[2]/div[1]/div[2]/div/div[3]/span/div[1]/div/div/div[5]/ul[6]/li[10]/span/a/span')\n",
+    "filter1.click\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 161,
+   "id": "f1b408a3",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lap_title = []\n",
+    "lap_rating = []\n",
+    "lap_price = []\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 163,
+   "id": "f79561e2",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "laptop_title = driver.find_elements(By.XPATH,'//span[@class=\"a-size-medium a-color-base a-text-normal\"]')\n",
+    "for i in laptop_title[0:10]:\n",
+    "    laptop = i.text\n",
+    "    lap_title.append(laptop)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 164,
+   "id": "8dc554fc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "laptop_rating = driver.find_elements(By.XPATH,'//i[@class=\"a-icon a-icon-star-small a-star-small-4 aok-align-bottom\"]')\n",
+    "for i in laptop_rating[0:10]:\n",
+    "    laptop = i.text\n",
+    "    lap_rating.append(laptop)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 165,
+   "id": "908a6ee5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "laptop_price =driver.find_elements(By.XPATH,'//span[@class=\"a-price-whole\"]')\n",
+    "for i in laptop_price[0:10]:\n",
+    "    laptop = i.text\n",
+    "    lap_price.append(laptop)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 166,
+   "id": "4cee7cf9",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "20 10 10\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(len(lap_title),len(lap_rating),len(lap_price))\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 168,
+   "id": "d1d18e21",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>title</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Lenovo IdeaPad Slim 1 AMD Ryzen 3 3250U 15.6\" ...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Lenovo IdeaPad 3 11th Gen Intel Core i3 15.6\" ...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>(Renewed) Dell Latitude E5470 Intel Core i5 6t...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>AVITA SATUS S111 NU14A1INC43PN-SG 14.1 FHD (35...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>(Renewed) Dell Latitude Laptop E7470 Intel Cor...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>Lenovo IdeaPad 3 11th Gen Intel Core i3 15.6\" ...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>(Renewed)Lenovo ThinkPad L450 5th Gen Intel Co...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>HP ProBook 440 G8 Notebook PC, 11th Gen Intel ...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>HP 15s-Ryzen 3 3250U 8GB SDRAM/256GB SSD 15.6i...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>(Renewed) Lenovo Thinkpad L450 5th Gen Intel C...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <td>Lenovo IdeaPad Slim 1 AMD Ryzen 3 3250U 15.6\" ...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <td>Lenovo IdeaPad 3 11th Gen Intel Core i3 15.6\" ...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>12</th>\n",
+       "      <td>(Renewed) Dell Latitude E5470 Intel Core i5 6t...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>13</th>\n",
+       "      <td>AVITA SATUS S111 NU14A1INC43PN-SG 14.1 FHD (35...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>14</th>\n",
+       "      <td>(Renewed) Dell Latitude Laptop E7470 Intel Cor...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>15</th>\n",
+       "      <td>Lenovo IdeaPad 3 11th Gen Intel Core i3 15.6\" ...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>16</th>\n",
+       "      <td>(Renewed)Lenovo ThinkPad L450 5th Gen Intel Co...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>17</th>\n",
+       "      <td>HP ProBook 440 G8 Notebook PC, 11th Gen Intel ...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>18</th>\n",
+       "      <td>HP 15s-Ryzen 3 3250U 8GB SDRAM/256GB SSD 15.6i...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>19</th>\n",
+       "      <td>(Renewed) Lenovo Thinkpad L450 5th Gen Intel C...</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                                                title\n",
+       "0   Lenovo IdeaPad Slim 1 AMD Ryzen 3 3250U 15.6\" ...\n",
+       "1   Lenovo IdeaPad 3 11th Gen Intel Core i3 15.6\" ...\n",
+       "2   (Renewed) Dell Latitude E5470 Intel Core i5 6t...\n",
+       "3   AVITA SATUS S111 NU14A1INC43PN-SG 14.1 FHD (35...\n",
+       "4   (Renewed) Dell Latitude Laptop E7470 Intel Cor...\n",
+       "5   Lenovo IdeaPad 3 11th Gen Intel Core i3 15.6\" ...\n",
+       "6   (Renewed)Lenovo ThinkPad L450 5th Gen Intel Co...\n",
+       "7   HP ProBook 440 G8 Notebook PC, 11th Gen Intel ...\n",
+       "8   HP 15s-Ryzen 3 3250U 8GB SDRAM/256GB SSD 15.6i...\n",
+       "9   (Renewed) Lenovo Thinkpad L450 5th Gen Intel C...\n",
+       "10  Lenovo IdeaPad Slim 1 AMD Ryzen 3 3250U 15.6\" ...\n",
+       "11  Lenovo IdeaPad 3 11th Gen Intel Core i3 15.6\" ...\n",
+       "12  (Renewed) Dell Latitude E5470 Intel Core i5 6t...\n",
+       "13  AVITA SATUS S111 NU14A1INC43PN-SG 14.1 FHD (35...\n",
+       "14  (Renewed) Dell Latitude Laptop E7470 Intel Cor...\n",
+       "15  Lenovo IdeaPad 3 11th Gen Intel Core i3 15.6\" ...\n",
+       "16  (Renewed)Lenovo ThinkPad L450 5th Gen Intel Co...\n",
+       "17  HP ProBook 440 G8 Notebook PC, 11th Gen Intel ...\n",
+       "18  HP 15s-Ryzen 3 3250U 8GB SDRAM/256GB SSD 15.6i...\n",
+       "19  (Renewed) Lenovo Thinkpad L450 5th Gen Intel C..."
+      ]
+     },
+     "execution_count": 168,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df9 = pd.DataFrame({'title':lap_title,})\n",
+    "df9"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 170,
+   "id": "2ccf804b",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>rating</th>\n",
+       "      <th>price</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td></td>\n",
+       "      <td>36,000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td></td>\n",
+       "      <td>38,490</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td></td>\n",
+       "      <td>18,924</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td></td>\n",
+       "      <td>19,999</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td></td>\n",
+       "      <td>21,199</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td></td>\n",
+       "      <td>38,490</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td></td>\n",
+       "      <td>14,998</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td></td>\n",
+       "      <td>50,990</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td></td>\n",
+       "      <td>28,990</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td></td>\n",
+       "      <td>16,095</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "  rating   price\n",
+       "0         36,000\n",
+       "1         38,490\n",
+       "2         18,924\n",
+       "3         19,999\n",
+       "4         21,199\n",
+       "5         38,490\n",
+       "6         14,998\n",
+       "7         50,990\n",
+       "8         28,990\n",
+       "9         16,095"
+      ]
+     },
+     "execution_count": 170,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df10= pd.DataFrame({'rating':lap_rating,'price':lap_price})\n",
+    "df10"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "416994a5",
+   "metadata": {},
+   "source": [
+    "# question 8"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 171,
+   "id": "f6c4eeda",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "driver = webdriver.Chrome(r\"C:\\Users\\MAYANK\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 172,
+   "id": "a1258d55",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "driver.get(\"https://www.azquotes.com/\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 173,
+   "id": "76f1badc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "designation = driver.find_element(By.XPATH,'//input[@class=\"ui-autocomplete-input\"]')\n",
+    "designation.send_keys('TOP 100 Quotes')\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 175,
+   "id": "82284467",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "top = driver.find_element(By.XPATH,'//a[@class=\"collapse\"]')\n",
+    "top.click()\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 176,
+   "id": "a6984073",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Quote_title = []\n",
+    "Author_name = []\n",
+    "Quotes_type = []"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 177,
+   "id": "1169e39c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "title_tags = driver.find_elements(By.XPATH,'//a[@class=\"title\"]')\n",
+    "for i in title_tags[0:100]:\n",
+    "    title = i.text\n",
+    "    Quote_title.append(title)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 178,
+   "id": "2fda76f1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "author_tags = driver.find_elements(By.XPATH,'//div[@class=\"author\"]')\n",
+    "for i in author_tags[0:100]:\n",
+    "    author = i.text\n",
+    "    Author_name.append(author)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 179,
+   "id": "6267c83d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "quote_tags = driver.find_elements(By.XPATH,'//div[@class=\"tags\"]')\n",
+    "for i in quote_tags[0:100]:\n",
+    "    quote= i.text\n",
+    "    Quotes_type.append(quote)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 180,
+   "id": "f6d2bb32",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "100 100 100\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(len(Quote_title),len(Author_name),len(Quotes_type))\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 181,
+   "id": "63c32f2e",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>title</th>\n",
+       "      <th>author</th>\n",
+       "      <th>type</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>The essence of strategy is choosing what not t...</td>\n",
+       "      <td>Michael Porter</td>\n",
+       "      <td>Essence, Deep Thought, Transcendentalism</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>One cannot and must not try to erase the past ...</td>\n",
+       "      <td>Golda Meir</td>\n",
+       "      <td>Inspiration, Past, Trying</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Patriotism means to stand by the country. It d...</td>\n",
+       "      <td>Theodore Roosevelt</td>\n",
+       "      <td>Country, Peace, War</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Death is something inevitable. When a man has ...</td>\n",
+       "      <td>Nelson Mandela</td>\n",
+       "      <td>Inspirational, Motivational, Death</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>You have to love a nation that celebrates its ...</td>\n",
+       "      <td>Erma Bombeck</td>\n",
+       "      <td>4th Of July, Food, Patriotic</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>95</th>\n",
+       "      <td>When the going gets weird, the weird turn pro.</td>\n",
+       "      <td>Hunter S. Thompson</td>\n",
+       "      <td>Music, Sports, Hunting</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>96</th>\n",
+       "      <td>When a train goes through a tunnel and it gets...</td>\n",
+       "      <td>Corrie Ten Boom</td>\n",
+       "      <td>Trust, Encouraging, Uplifting</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>97</th>\n",
+       "      <td>If you think you are too small to make a diffe...</td>\n",
+       "      <td>Dalai Lama</td>\n",
+       "      <td>Inspirational, Funny, Change</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>98</th>\n",
+       "      <td>God doesn't require us to succeed, he only req...</td>\n",
+       "      <td>Mother Teresa</td>\n",
+       "      <td>Success, God, Mother</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>99</th>\n",
+       "      <td>Change your thoughts and you change your world.</td>\n",
+       "      <td>Norman Vincent Peale</td>\n",
+       "      <td>Inspirational, Motivational, Change</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>100 rows × 3 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                                                title                author  \\\n",
+       "0   The essence of strategy is choosing what not t...        Michael Porter   \n",
+       "1   One cannot and must not try to erase the past ...            Golda Meir   \n",
+       "2   Patriotism means to stand by the country. It d...    Theodore Roosevelt   \n",
+       "3   Death is something inevitable. When a man has ...        Nelson Mandela   \n",
+       "4   You have to love a nation that celebrates its ...          Erma Bombeck   \n",
+       "..                                                ...                   ...   \n",
+       "95     When the going gets weird, the weird turn pro.    Hunter S. Thompson   \n",
+       "96  When a train goes through a tunnel and it gets...       Corrie Ten Boom   \n",
+       "97  If you think you are too small to make a diffe...            Dalai Lama   \n",
+       "98  God doesn't require us to succeed, he only req...         Mother Teresa   \n",
+       "99    Change your thoughts and you change your world.  Norman Vincent Peale   \n",
+       "\n",
+       "                                        type  \n",
+       "0   Essence, Deep Thought, Transcendentalism  \n",
+       "1                  Inspiration, Past, Trying  \n",
+       "2                        Country, Peace, War  \n",
+       "3         Inspirational, Motivational, Death  \n",
+       "4               4th Of July, Food, Patriotic  \n",
+       "..                                       ...  \n",
+       "95                    Music, Sports, Hunting  \n",
+       "96             Trust, Encouraging, Uplifting  \n",
+       "97              Inspirational, Funny, Change  \n",
+       "98                      Success, God, Mother  \n",
+       "99       Inspirational, Motivational, Change  \n",
+       "\n",
+       "[100 rows x 3 columns]"
+      ]
+     },
+     "execution_count": 181,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df12 = pd.DataFrame({'title':Quote_title,'author':Author_name,'type':Quotes_type})\n",
+    "df12"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d894572e",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.12"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
